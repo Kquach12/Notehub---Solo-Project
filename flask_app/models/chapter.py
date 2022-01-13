@@ -106,7 +106,7 @@ class Chapter:
         
     @classmethod
     def update(cls, data):
-        query = "UPDATE chapters SET title = %(title)s, availability = %(availability)s, created_at = %(created_at)s,  updated_at = NOW() WHERE id = %(id)s;"
+        query = "UPDATE chapters SET title = %(title)s, availability = %(availability)s,  updated_at = NOW() WHERE id = %(id)s;"
         return connectToMySQL('notehub_schema').query_db( query, data )
 
     @classmethod
