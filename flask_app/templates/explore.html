@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light d-flex justify-content-between border-navy">
+        <div class="d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="/dashboard"><h2>notehub</h2></a>
+            <div class="d-flex justify-content-between ml-2">
+                <a href="/dashboard" class="ml-2 mr-2 font-weight-bold navbar-link">home</a> |
+                <a href="/all/notes" class="ml-2 mr-2 font-weight-bold navbar-link">notes</a> |
+                <a href="/favorites" class="ml-2 mr-2 font-weight-bold navbar-link">favorites</a> |
+            </div>
+        </div>
+        <div class="my-2 my-lg-0">
+            <a href="/logout" class="font-weight-bold navbar-link">logout</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Explore Other Creations</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>School</th>
+                    <th>Course</th>
+                    <th>Creator</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%  for chapter in chapters %}
+                <tr>
+                    <td>{{chapter.title}}</td>
+                    <td>{{chapter.schools[0].school_name}}</td>
+                    <td>{{chapter.courses[0].course_name}}</td>
+                    <td>{{chapter.users[0].first_name}}</td>
+                    <td>
+                        <a href="/view/note/{{chapter.id}}">View</a>
+                        <form action="/favorite/note" method="POST">
+                            {% if chapter.id in favorites %}
+                                <a href="/unfavorite/chapter/{{chapter.id}}">Unfavorite</a>
+                            {% else %}
+                                <button name="chapter_id" value="{{chapter.id}}">Favorite</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
