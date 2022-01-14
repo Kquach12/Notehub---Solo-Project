@@ -42,14 +42,14 @@
                     </div>
                 </div>
                 <input type="submit" value="Create">
-            </form>
-                {% with messages = get_flashed_messages(category_filter = ['chapter']) %}   
-                    {% if messages %}                            
-                        {% for message in messages %}            
-                            <p>{{message}}</p>                   
-                        {% endfor %}
-                    {% endif %}
+                {% with messages = get_flashed_messages(category_filter = ['chapter']) %}     
+                {% if messages %}                            
+                    {% for message in messages %}
+                        <p>{{message}}</p> 
+                    {% endfor %}
+                {% endif %}
                 {% endwith %}
+            </form>
         </div>
     </div>
 </body>

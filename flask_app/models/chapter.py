@@ -20,7 +20,6 @@ class Chapter:
         self.notes = []
         self.schools = []
         self.courses = []
-        self.fav_users = 0
 
     # Now we use class methods to query our database
     @classmethod
@@ -207,27 +206,19 @@ class Chapter:
         return favorites
         
 
-    # @staticmethod
-    # def validate_class(class):
-    #     is_valid = True
-    #     # test whether a field matches the pattern
-    #     query = "SELECT * FROM chapters WHERE title = %(title)s;"
-    #     results = connectToMySQL('notehub_schema').query_db(query,class)
-    #     if 'under_30_minutes' not in class:
-    #         flash("Please indicate the length of time! ", "class")
-    #         is_valid = False
-    #     if len(class['title']) < 3:
-    #         flash("title needs to be at least 3 characters", "class")
-    #         is_valid = False
-    #     if len(class['description']) < 5:
-    #         flash("Description must be at least 5 characters ", "class")
-    #         is_valid = False
-    #     if len(class['instruction']) < 5:
-    #         flash("Instruction must be at least 5 characters", "class")
-    #         is_valid = False
-    #     if len(class['created_at']) < 1:
-    #         flash("Please enter a date", "class")
-    #         is_valid = False
+    @staticmethod
+    def validate_chapter(chapter):
+        is_valid = True
+        # # test whether a field matches the pattern
+        # query = "SELECT * FROM chapters WHERE title = %(title)s;"
+        # results = connectToMySQL('notehub_schema').query_db(query,class)
+        if len(chapter['title']) < 2:
+            flash("Title needs to be at least 2 characters", "chapter")
+            is_valid = False
 
-    #     return is_valid
+        if 'availability' not in chapter:
+            flash("Please indicate if you want your notes public or private!", "chapter")
+            is_valid = False
+
+        return is_valid
 

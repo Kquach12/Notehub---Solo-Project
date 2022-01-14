@@ -90,7 +90,7 @@ class School:
         results = connectToMySQL('notehub_schema').query_db(query,school)
 
         if len(school['school_name']) < 2:
-            flash("school_name needs to be at least 2 characters", "chapter")
+            flash("School name needs to be at least 2 characters", "chapter")
             is_valid = False
             
         if len(results) == 0:

@@ -92,12 +92,12 @@ class Course:
     #         class.users.append(user.User(u))
     #     return class
 
-    @classmethod
-    def check_in_db(cls, course):
-        query = "SELECT * FROM courses WHERE course_name = %(course_name)s;"
-        results = connectToMySQL('notehub_schema').query_db(query,course)
-        if len(results) == 0:
-            Course.save(course)
+    # @classmethod
+    # def check_in_db(cls, course):
+    #     query = "SELECT * FROM courses WHERE course_name = %(course_name)s;"
+    #     results = connectToMySQL('notehub_schema').query_db(query,course)
+    #     if len(results) == 0:
+    #         Course.save(course)
 
     @staticmethod
     def validate_course(course):
@@ -107,9 +107,11 @@ class Course:
         results = connectToMySQL('notehub_schema').query_db(query,course)
 
         if len(course['course_name']) < 2:
-            flash("course_name needs to be at least 2 characters", "chapter")
+            flash("Course name needs to be at least 2 characters", "chapter")
             is_valid = False
 
+        if len(results) == 0:
+            Course.save(course)
 
         return is_valid
 

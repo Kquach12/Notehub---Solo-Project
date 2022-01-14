@@ -19,7 +19,7 @@ def create_page():
 
 @app.route('/create', methods = ["POST"])
 def add_to_db():
-    if not School.validate_school(request.form) or not Course.validate_course(request.form):
+    if not Chapter.validate_chapter(request.form) or not School.validate_school(request.form) or not Course.validate_course(request.form):
         return redirect('/create/chapter')
     data_school = {
         "school_name": request.form['school_name'],
@@ -29,7 +29,7 @@ def add_to_db():
     data_course = {
         "course_name": request.form['course_name']
     }
-    Course.check_in_db(data_course)
+    # Course.check_in_db(data_course)
     course = Course.get_one_by_name(data_course)
     
     data = {
