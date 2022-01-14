@@ -74,31 +74,13 @@ class School:
         query = "DELETE FROM schools WHERE id = %(id)s"
         return connectToMySQL('notehub_schema').query_db(query, data)
 
-    # @classmethod 
-    # def get_one_with_user(cls, data):
-    #     query = "SELECT * FROM schools LEFT JOIN users ON users.id = schools.user_id WHERE schools.id = %(id)s;"
-    #     results = connectToMySQL('notehub_schema').query_db(query, data)
-    #     school = cls(results[0])
-    #     for row in results:
-    #         u = {
-    #             "id": row['users.id'],
-    #             "first_school_name": row['first_school_name'],
-    #             "last_school_name": row['last_school_name'],
-    #             "email": row['email'],
-    #             "password": row['password'],
-    #             "created_at": row['created_at'],
-    #             "updated_at": row['updated_at']
-    #         }
-    #         school.users.append(user.User(u))
-    #     return school
-
-    @classmethod
-    def check_in_db(cls, school):
-        query = "SELECT * FROM schools WHERE school_name = %(school_name)s;"
-        results = connectToMySQL('notehub_schema').query_db(query,school)
-        if len(results) == 0:
-            print('NIWNCOCMKDCNSDCNOD')
-            School.save(school)
+    # @classmethod
+    # def check_in_db(cls, school):
+    #     query = "SELECT * FROM schools WHERE school_name = %(school_name)s;"
+    #     results = connectToMySQL('notehub_schema').query_db(query,school)
+    #     if len(results) == 0:
+    #         print('NIWNCOCMKDCNSDCNOD')
+    #         School.save(school)
 
     @staticmethod
     def validate_school(school):
@@ -110,6 +92,11 @@ class School:
         if len(school['school_name']) < 2:
             flash("school_name needs to be at least 2 characters", "chapter")
             is_valid = False
+            
+        if len(results) == 0:
+            print('NIWNCOCMKDCNSDCNOD')
+            School.save(school)
+
 
 
         return is_valid
