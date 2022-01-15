@@ -1,0 +1,59 @@
+body{                        
+    background-color: bisque;
+}
+
+h1{
+    color: rgb(81, 81, 177);
+}
+
+.header{
+    background-color: white;
+    border-bottom: 2px solid rgb(81, 81, 177);
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.header a{
+    color: rgb(81, 81, 177);
+}
+
+
+
+.dashboard-option{
+    display: block;
+    margin: 10px;
+    width: 400px;
+    height: 200px;
+}
+
+button, .bg-color{
+    background-color: white;
+    color: rgb(64, 173, 224);
+    border: 2px solid rgb(81, 81, 177);
+    border-radius: 10px;
+    transition: 500ms;
+}
+
+button:hover, .bg-color:hover{
+    background-color: rgb(64, 173, 224);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.card{
+    border: 2px solid rgb(64, 173, 224);
+    color: black;
+}
+
+.card a{
+    color: rgb(81, 81, 177);
+    transition: 500ms;
+}
+.card a:hover{
+    text-decoration: none;
+    color: rgb(64, 173, 224);
+}
