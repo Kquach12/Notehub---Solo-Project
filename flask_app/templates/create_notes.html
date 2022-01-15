@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title></title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/style.css">
+        <script src="../static/script.js" defer></script>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light d-flex justify-content-between border-navy">
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="navbar-brand" href="/dashboard"><h2>notehub</h2></a>
+                <div class="d-flex justify-content-between ml-2">
+                    <a href="/dashboard" class="ml-2 mr-2 font-weight-bold navbar-link">home</a> |
+                    <a href="/all/notes" class="ml-2 mr-2 font-weight-bold navbar-link">notes</a> |
+                    <a href="/favorites" class="ml-2 mr-2 font-weight-bold navbar-link">favorites</a> |
+                </div>
+            </div>
+            <div class="my-2 my-lg-0">
+                <a href="/logout" class="font-weight-bold navbar-link">logout</a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>{{chapter.title}}</h1>
+                    <div class="stopwatch">
+                        <span class="time" id="display">00:00:00</span>
+                        <div class="controls">
+                            <button class="buttonPlay">
+                                <span id="playButton">Play</span>
+            
+                                <span id="pauseButton">Pause</span>
+                            </button>
+            
+                            <button class="buttonReset">
+                                <span id="resetButton">Reset</span> 
+                            </button>
+                            <a href="/dashboard"><button>Finish</button></a>
+                        </div>
+                        
+                    </div>
+                    <form id="form" action="/save/note" method="POST">
+                        <input type="hidden" name='timestamp' value="" id="timestamp">
+                        <input type="hidden" name='chapter_id' value="{{chapter.id}}">
+                        <label for="header">Header:</label>
+                        <input type="text" name="header" id="header" class="form-control" >
+                        <label for="note">Note:</label>
+                        <textarea class="form-control" id="note" name="note" rows="8"></textarea>
+                        <input type="submit" class="btn btn-primary mt-2" id="submit">
+                    </form>
+                </div>
+                <div class="col">
+                    <h1>Written Notes</h1>
+                    <div id="written-notes">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
