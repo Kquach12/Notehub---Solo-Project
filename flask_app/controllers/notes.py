@@ -4,6 +4,7 @@ from flask_app.models.user import User
 from flask_app.models.note import Note
 from flask_app.models.chapter import Chapter
 from flask_app.models.course import Course
+from flask_app.models.school import School
 
 
 @app.route('/create/notes')
@@ -45,12 +46,24 @@ def edit_note(id):
     return render_template('edit_chapter.html',  chapter = chapter)
 
 
-@app.route('/edit', methods=["POST"])
-def update_in_db():
+@app.route('/edit/<int:chapter_id>', methods=["POST"])
+def update_in_db(chapter_id):
+    if not Chapter.validate_chapter(request.form) or not School.validate_school(request.form) or not Course.validate_course(request.form):
+        return redirect(f'/edit/note/{chapter_id}')
+    data_school = {
+        "school_name": request.form['school_name'],
+    }
+    school = School.get_one_by_name(data_school)
+    data_course = {
+        "course_name": request.form['course_name']
+    }
+    course = Course.get_one_by_name(data_course)
     data_chapter = {
         'id': request.form['chapter_id'],
         'title': request.form['title'],
-        'availability': request.form['availability']
+        'availability': request.form['availability'],
+        "school_id": school.id,
+        "course_id": course.id
     }
     Chapter.update(data_chapter)
     for i in range(int(request.form['num_of_notes'])):

@@ -105,7 +105,7 @@ class Chapter:
         
     @classmethod
     def update(cls, data):
-        query = "UPDATE chapters SET title = %(title)s, availability = %(availability)s,  updated_at = NOW() WHERE id = %(id)s;"
+        query = "UPDATE chapters SET title = %(title)s, availability = %(availability)s,  updated_at = NOW(), school_id = %(school_id)s, course_id = %(course_id)s WHERE id = %(id)s;"
         return connectToMySQL('notehub_schema').query_db( query, data )
 
     @classmethod
@@ -209,9 +209,6 @@ class Chapter:
     @staticmethod
     def validate_chapter(chapter):
         is_valid = True
-        # # test whether a field matches the pattern
-        # query = "SELECT * FROM chapters WHERE title = %(title)s;"
-        # results = connectToMySQL('notehub_schema').query_db(query,class)
         if len(chapter['title']) < 2:
             flash("Title needs to be at least 2 characters", "chapter")
             is_valid = False
