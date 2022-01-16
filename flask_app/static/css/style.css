@@ -2,8 +2,16 @@ body{
     background-color: bisque;
 }
 
-h1{
+h1, h2{
     color: rgb(81, 81, 177);
+}
+
+.title{
+    text-align: center;
+}
+
+.website-name-hub{
+    color: rgb(64, 173, 224);
 }
 
 .header{
