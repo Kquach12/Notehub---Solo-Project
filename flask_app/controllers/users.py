@@ -81,10 +81,10 @@ def show_favorites():
     user = User.get_user_with_chapters(data)
     return render_template('favorites.html', user = user)
 
-@app.route("/favorite/note", methods = ["POST"])
-def favorite_note():
+@app.route("/favorite/note/<int:chapter_id>")
+def favorite_note(chapter_id):
     data = {
-        "chapter_id": request.form['chapter_id'],
+        "chapter_id": chapter_id,
         "user_id": session['user_id']
     }
     User.add_favorite(data)
