@@ -9,6 +9,8 @@ from flask_app.models.school import School
 
 @app.route('/create/notes')
 def create_notes():
+    if 'user_id' not in session:
+        return redirect('/')
     data = {
         'user_id': session['user_id']
     }
@@ -30,19 +32,33 @@ def save_note_to_DB():
 
 @app.route('/view/note/<int:id>')
 def view_note(id):
+    if 'user_id' not in session:
+        return redirect('/')
     data = {
         'chapter_id': id
     }
     chapter = Chapter.get_one_with_notes(data)
     favorites = Chapter.get_favorites_count(data)
+
+    if (chapter.user_id != session['user_id'] and chapter.availability == 'private'):
+        return redirect('/explore/notes')
+    
+    
     return render_template('view_note.html',  chapter = chapter, favorites = favorites['num_of_favs'])
 
 @app.route('/edit/note/<int:id>')
 def edit_note(id):
+    if 'user_id' not in session:
+        return redirect('/')
     data = {
         'chapter_id': id
     }
     chapter = Chapter.get_one_with_notes_school_course(data)
+
+    if (chapter.user_id != session['user_id'] and chapter.availability == 'private'):
+        return redirect('/explore/notes')
+    
+
     return render_template('edit_chapter.html',  chapter = chapter)
 
 
