@@ -36,7 +36,7 @@ a:hover{
     height: 200px;
 }
 
-button, .bg-color{
+button, .submit-btn{
     background-color: white;
     color: rgb(64, 173, 224);
     border: 2px solid rgb(81, 81, 177);
@@ -44,10 +44,11 @@ button, .bg-color{
     transition: 500ms;
 }
 
-button:hover, .bg-color:hover{
+button:hover, .submit-btn:hover{
     background-color: rgb(64, 173, 224);
     color: white;
     font-weight: bold;
+    font-size: 30px;
     text-decoration: none;
 }
 

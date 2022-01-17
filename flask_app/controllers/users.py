@@ -59,7 +59,7 @@ def dashboard():
         chapters = Chapter.get_all_with_school_and_course(data)
         counter = 0
         for i in reversed(range(len(chapters))):
-            if counter == 2:
+            if counter == 3:
                 break
             recent_chapters.append(chapters[i])
             counter+=1

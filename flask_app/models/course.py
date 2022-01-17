@@ -74,31 +74,6 @@ class Course:
         query = "DELETE FROM courses WHERE id = %(id)s"
         return connectToMySQL('notehub_schema').query_db(query, data)
 
-    # @classmethod 
-    # def get_one_with_user(cls, data):
-    #     query = "SELECT * FROM courses LEFT JOIN users ON users.id = courses.user_id WHERE courses.id = %(id)s;"
-    #     results = connectToMySQL('notehub_schema').query_db(query, data)
-    #     class = cls(results[0])
-    #     for row in results:
-    #         u = {
-    #             "id": row['users.id'],
-    #             "first_course_name": row['first_course_name'],
-    #             "last_course_name": row['last_course_name'],
-    #             "email": row['email'],
-    #             "password": row['password'],
-    #             "created_at": row['created_at'],
-    #             "updated_at": row['updated_at']
-    #         }
-    #         class.users.append(user.User(u))
-    #     return class
-
-    # @classmethod
-    # def check_in_db(cls, course):
-    #     query = "SELECT * FROM courses WHERE course_name = %(course_name)s;"
-    #     results = connectToMySQL('notehub_schema').query_db(query,course)
-    #     if len(results) == 0:
-    #         Course.save(course)
-
     @staticmethod
     def validate_course(course):
         is_valid = True

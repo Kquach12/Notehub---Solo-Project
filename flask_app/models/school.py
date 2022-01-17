@@ -74,14 +74,6 @@ class School:
         query = "DELETE FROM schools WHERE id = %(id)s"
         return connectToMySQL('notehub_schema').query_db(query, data)
 
-    # @classmethod
-    # def check_in_db(cls, school):
-    #     query = "SELECT * FROM schools WHERE school_name = %(school_name)s;"
-    #     results = connectToMySQL('notehub_schema').query_db(query,school)
-    #     if len(results) == 0:
-    #         print('NIWNCOCMKDCNSDCNOD')
-    #         School.save(school)
-
     @staticmethod
     def validate_school(school):
         is_valid = True

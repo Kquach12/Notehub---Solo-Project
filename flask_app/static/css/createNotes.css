@@ -38,6 +38,10 @@
     height: 50px;
 }
 
+.controls button:hover, form .submit-btn:hover{
+    font-size: medium;
+}
+
 .notetaking{
     border: 2px solid rgb(64, 173, 224);
 }

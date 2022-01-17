@@ -1,0 +1,10 @@
+table{
+    background-color: white;
+    border-radius: 20px;
+    border: none;
+}
+
+
+table th{
+    color:rgb(81, 81, 177);;
+}

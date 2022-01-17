@@ -92,7 +92,7 @@ function submit(){
     header = document.getElementById('header').value
     note = document.getElementById('note').value
     timestamp = document.getElementById('timestamp').value
-    res = `<div class = "card mb-1">
+    res = `<div class = "card mb-1 p-2">
                 <h3 class="card-title">${header}</h3>
                 <p class="card-text">${note}</p>
                 <p>${timestamp}</p>
