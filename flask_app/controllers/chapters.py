@@ -21,16 +21,14 @@ def create_page():
 def add_to_db():
     if not Chapter.validate_chapter(request.form) or not School.validate_school(request.form) or not Course.validate_course(request.form):
         return redirect('/create/chapter')
-    data_school = {
+
+    data_school_course = {
         "school_name": request.form['school_name'],
-    }
-    # School.check_in_db(data_school)
-    school = School.get_one_by_name(data_school)
-    data_course = {
         "course_name": request.form['course_name']
     }
-    # Course.check_in_db(data_course)
-    course = Course.get_one_by_name(data_course)
+
+    school = School.get_one_by_name(data_school_course)
+    course = Course.get_one_by_name(data_school_course)
     
     data = {
         "title": request.form['title'],

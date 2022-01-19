@@ -66,14 +66,14 @@ def edit_note(id):
 def update_in_db(chapter_id):
     if not Chapter.validate_chapter(request.form) or not School.validate_school(request.form) or not Course.validate_course(request.form):
         return redirect(f'/edit/note/{chapter_id}')
-    data_school = {
+
+    data_school_course = {
         "school_name": request.form['school_name'],
-    }
-    school = School.get_one_by_name(data_school)
-    data_course = {
         "course_name": request.form['course_name']
     }
-    course = Course.get_one_by_name(data_course)
+    school = School.get_one_by_name(data_school_course)
+    course = Course.get_one_by_name(data_school_course)
+    
     data_chapter = {
         'id': request.form['chapter_id'],
         'title': request.form['title'],

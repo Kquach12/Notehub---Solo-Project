@@ -81,7 +81,7 @@ def show_favorites():
     user = User.get_user_with_chapters(data)
     return render_template('favorites.html', user = user)
 
-@app.route("/favorite/note/<int:chapter_id>")
+@app.route("/favorite/chapter/<int:chapter_id>")
 def favorite_note(chapter_id):
     data = {
         "chapter_id": chapter_id,
