@@ -137,7 +137,7 @@ class Chapter:
 
     @classmethod 
     def get_one_with_notes_school_course(cls, data):
-        query = "SELECT * FROM chapters LEFT JOIN courses ON chapters.course_id = courses.id LEFT JOIN schools ON chapters.school_id = schools.id LEFT JOIN notes ON chapters.id = notes.chapter_id WHERE chapters.id = %(chapter_id)s;"
+        query = "SELECT * FROM chapters LEFT JOIN courses ON chapters.course_id = courses.id LEFT JOIN schools ON chapters.school_id = schools.id LEFT JOIN notes ON chapters.id = notes.chapter_id WHERE chapter_id = %(chapter_id)s;"
         results = connectToMySQL('notehub_schema').query_db(query, data)
         if len(results) > 0:
             chapter = cls(results[0])
@@ -167,7 +167,30 @@ class Chapter:
                 chapter.schools.append(school.School(s))
                 chapter.courses.append(course.Course(c))
         else:
-            chapter = Chapter.get_one(data)
+            chapter = Chapter.get_one_with_school_course(data)
+            
+        return chapter
+
+    @classmethod 
+    def get_one_with_school_course(cls, data):
+        query = "SELECT * FROM chapters LEFT JOIN courses ON chapters.course_id = courses.id LEFT JOIN schools ON chapters.school_id = schools.id LEFT JOIN notes ON chapters.id = notes.chapter_id WHERE chapters.id = %(chapter_id)s;"
+        results = connectToMySQL('notehub_schema').query_db(query, data)
+        chapter = cls(results[0])
+        for row in results:
+            s = {
+                "id": row['schools.id'],
+                "school_name": row['school_name'],
+                "created_at": row['schools.created_at'],
+                "updated_at": row['schools.updated_at']
+            }
+            c = {
+                "id": row['courses.id'],
+                "course_name": row['course_name'],
+                "created_at": row['courses.created_at'],
+                "updated_at": row['courses.updated_at']
+            }
+            chapter.schools.append(school.School(s))
+            chapter.courses.append(course.Course(c))
             
         return chapter
 
