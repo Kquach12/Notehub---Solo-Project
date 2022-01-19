@@ -22,11 +22,10 @@ def add_to_db():
     if not Chapter.validate_chapter(request.form) or not School.validate_school(request.form) or not Course.validate_course(request.form):
         return redirect('/create/chapter')
 
-    data_school_course = {
+    data_school_course = {                          #Get school and course id before saving it into a new chapter
         "school_name": request.form['school_name'],
         "course_name": request.form['course_name']
     }
-
     school = School.get_one_by_name(data_school_course)
     course = Course.get_one_by_name(data_school_course)
     
