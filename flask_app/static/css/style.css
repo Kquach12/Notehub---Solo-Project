@@ -53,6 +53,16 @@ button:hover, .submit-btn:hover{
 }
 
 
+.submit-btn{
+    height: 45px;
+    width: 76px;
+}
+
+.submit-btn:hover{
+    font-size: 16px;
+}
+
+
 .card{
     border: 2px solid rgb(64, 173, 224);
     color: black;

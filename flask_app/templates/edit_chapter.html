@@ -32,7 +32,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-            <div style="border-bottom:orange; border-bottom-width:5px; border-bottom-style:solid;">
+            <div style="border-bottom:rgb(81, 81, 177); border-bottom-width:5px; border-bottom-style:solid;">
                 <input type="hidden" name="chapter_id" value="{{chapter.id}}">
                 <label for="title">Title:</label>
                 <input type="text" name="title" value="{{chapter.title}}" class="form-control">
@@ -46,17 +46,19 @@
                 <label for="availability">Public</label><br>   
             </div>
             <input type="hidden" name="num_of_notes" value="{{chapter.notes|length}}"/>
-        {%  for note in chapter.notes %}
-            <div style="border-bottom:green; border-bottom-width:5px; border-bottom-style:solid;">
-                <input type="hidden" name="{{'id' + loop.index|string}}" value="{{note.id}}">
-                <label for="header">Header:</label>
-                <input type="text" name="{{'header' + loop.index|string}}" value="{{note.header}}" class="form-control">
-                <label for="note">Note: </label>
-                <textarea name="{{'note' + loop.index|string}}" cols="20" rows="8" class="form-control">{{note.note}}</textarea>
-                <p>{{note.timestamp}}</p>
-            </div>
-        {% endfor %}
-        <input type="submit" name="" id="">
+        {% if chapter.notes|length > 0 %}
+            {%  for note in chapter.notes %}
+                <div style="border-bottom:rgb(64, 173, 224); border-bottom-width:5px; border-bottom-style:solid;">
+                    <input type="hidden" name="{{'id' + loop.index|string}}" value="{{note.id}}">
+                    <label for="header">Header:</label>
+                    <input type="text" name="{{'header' + loop.index|string}}" value="{{note.header}}" class="form-control">
+                    <label for="note">Note: </label>
+                    <textarea name="{{'note' + loop.index|string}}" cols="20" rows="8" class="form-control">{{note.note}}</textarea>
+                    <p>{{note.timestamp}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <input type="submit" class="submit-btn mt-2">
         </form>
 
     </div>

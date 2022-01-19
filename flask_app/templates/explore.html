@@ -44,11 +44,11 @@
                     <td>{{chapter.courses[0].course_name}}</td>
                     <td>{{chapter.users[0].first_name}}</td>
                     <td>
-                        <a href="/view/note/{{chapter.id}}">View</a>
+                        <a href="/view/note/{{chapter.id}}">View</a> | 
                         {% if chapter.id in favorites %}
                             <a href="/unfavorite/chapter/{{chapter.id}}">Unfavorite</a>
                         {% else %}
-                            <a href="/favorite/note/{{chapter.id}}">Favorite</a>
+                            <a href="/favorite/chapter/{{chapter.id}}">Favorite</a>
                         {% endif %}
                     </td>
                 </tr>

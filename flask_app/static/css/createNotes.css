@@ -38,7 +38,7 @@
     height: 50px;
 }
 
-.controls button:hover, form .submit-btn:hover{
+.controls button:hover{
     font-size: medium;
 }
 
