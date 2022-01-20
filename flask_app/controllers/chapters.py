@@ -19,11 +19,15 @@ def create_page():
 
 @app.route('/create', methods = ["POST"])
 def add_to_db():
-    if not Chapter.validate_chapter(request.form) or not School.validate_school(request.form) or not Course.validate_course(request.form):
+    is_valid_chapter = Chapter.validate_chapter(request.form)
+    is_valid_school = School.validate_school(request.form)
+    is_valid_course = Course.validate_course(request.form)
+
+    if not is_valid_chapter or not is_valid_school or not is_valid_course: 
         return redirect('/create/chapter')
 
     data_school_course = {                          #Get school and course id before saving it into a new chapter
-        "school_name": request.form['school_name'],
+        "school_name": request.form['school_name'],     #Create dropdown menu of saved schools and courses in databases already
         "course_name": request.form['course_name']
     }
     school = School.get_one_by_name(data_school_course)

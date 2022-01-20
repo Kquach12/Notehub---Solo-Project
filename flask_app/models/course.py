@@ -84,9 +84,9 @@ class Course:
         if len(course['course_name']) < 2:
             flash("Course name needs to be at least 2 characters", "chapter")
             is_valid = False
-
-        if len(results) == 0:
-            Course.save(course)
+        else:
+            if len(results) == 0:
+                Course.save(course)
 
         return is_valid
 

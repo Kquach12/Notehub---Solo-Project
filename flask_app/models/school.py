@@ -85,13 +85,11 @@ class School:
             flash("School name needs to be at least 2 characters", "chapter")
             is_valid = False
             
-        if len(results) == 0:
-            print('NIWNCOCMKDCNSDCNOD')
-            School.save(school)
-
-
-
+        else:
+            if len(results) == 0:
+                print('NIWNCOCMKDCNSDCNOD')
+                School.save(school)
+        
         return is_valid
-
 
 
