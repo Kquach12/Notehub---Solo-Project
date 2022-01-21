@@ -64,7 +64,10 @@ def edit_note(id):
 
 @app.route('/edit/<int:chapter_id>', methods=["POST"])
 def update_in_db(chapter_id):
-    if not Chapter.validate_chapter(request.form) or not School.validate_school(request.form) or not Course.validate_course(request.form):
+    is_valid_chapter = Chapter.validate_chapter(request.form)
+    is_valid_school = School.validate_school(request.form)
+    is_valid_course = Course.validate_course(request.form)
+    if not is_valid_chapter or not is_valid_school or not is_valid_course: 
         return redirect(f'/edit/note/{chapter_id}')
 
     data_school_course = {
