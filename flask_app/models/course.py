@@ -16,7 +16,7 @@ class Course:
     # Now we use class methods to query our database
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM courses;"
+        query = "SELECT * FROM courses ORDER BY course_name ASC;"
         # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL('notehub_schema').query_db(query)
         # Create an empty list to append our instances of friends
@@ -25,26 +25,6 @@ class Course:
         for course in results:
             courses.append( cls(course) )
         return courses
-
-    # @classmethod   
-    # def get_all_with_users(cls):
-    #     query = "SELECT * FROM courses LEFT JOIN users ON users.id = courses.user_id;"
-    #     results = connectToMySQL('notehub_schema').query_db(query)
-    #     courses = []
-    #     # for row in results:
-    #     for i in range(len(results)):
-    #         courses.append( cls(results[i]) )
-    #         u = {
-    #             "id": results[i]['users.id'],
-    #             "first_course_name": results[i]['first_course_name'],
-    #             "last_course_name": results[i]['last_course_name'],
-    #             "email": results[i]['email'],
-    #             "password": results[i]['password'],
-    #             "created_at": results[i]['created_at'],
-    #             "updated_at": results[i]['updated_at']
-    #         }
-    #         courses[i].users.append(user.User(u))
-    #     return courses
 
     @classmethod
     def save(cls, data):

@@ -11,11 +11,9 @@ from flask_app.controllers import notes
 def create_page():
     if 'user_id' not in session:
         return redirect('/')
-    data = {
-        "id": session['user_id']
-    }
-    user = User.get_one(data)
-    return render_template('create_chapter.html', user = user)
+    schools = School.get_all()
+    courses = Course.get_all()
+    return render_template('create_chapter.html', schools = schools, courses = courses)
 
 @app.route('/create', methods = ["POST"])
 def add_to_db():
