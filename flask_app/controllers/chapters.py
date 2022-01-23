@@ -17,6 +17,8 @@ def create_page():
 
 @app.route('/create', methods = ["POST"])
 def add_to_db():
+
+    #Store validation booleans in variables to gather all error messages at once
     is_valid_chapter = Chapter.validate_chapter(request.form)
     is_valid_school = School.validate_school(request.form)
     is_valid_course = Course.validate_course(request.form)
@@ -24,8 +26,9 @@ def add_to_db():
     if not is_valid_chapter or not is_valid_school or not is_valid_course: 
         return redirect('/create/chapter')
 
-    data_school_course = {                          #Get school and course id before saving it into a new chapter
-        "school_name": request.form['school_name'],     #Create dropdown menu of saved schools and courses in databases already
+    #Get school and course id before saving it into a new chapter
+    data_school_course = {                       
+        "school_name": request.form['school_name'],    
         "course_name": request.form['course_name']
     }
     school = School.get_one_by_name(data_school_course)
@@ -60,6 +63,8 @@ def explore():
     data = {
         'id': session['user_id']
     }
+
+    #Get all public notes and public notes that have already been favorited by user
     chapters = Chapter.get_other_public(data)
     user = User.get_user_with_chapters(data)
     favorites_id = []

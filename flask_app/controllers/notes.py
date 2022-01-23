@@ -85,6 +85,8 @@ def update_in_db(chapter_id):
         "course_id": course.id
     }
     Chapter.update(data_chapter)
+
+    #use for loop to update all notes for a specific chapter
     for i in range(int(request.form['num_of_notes'])):
         data_note = {
             'id': request.form['id'+str(i + 1)],

@@ -55,6 +55,8 @@ def dashboard():
             "id": session['user_id']
         }
         user = User.get_one(data)
+
+        #limit to 3 recent chapters on dashboard
         recent_chapters = []
         chapters = Chapter.get_all_with_school_and_course(data)
         counter = 0
@@ -63,6 +65,8 @@ def dashboard():
                 break
             recent_chapters.append(chapters[i])
             counter+=1
+
+
         return render_template("dashboard.html", user = user, chapters = recent_chapters)
     
     return redirect('/')
