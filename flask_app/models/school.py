@@ -68,7 +68,6 @@ class School:
             
         else:
             if len(results) == 0:
-                print('NIWNCOCMKDCNSDCNOD')
                 School.save(school)
         
         return is_valid

@@ -11,13 +11,10 @@ function timeToString(time) {
     let diffInSec = (diffInMin - mm) * 60;
     let ss = Math.floor(diffInSec);
 
-    // let diffInMs = (diffInSec - ss) * 100;
-    // let ms = Math.floor(diffInMs);
 
     let formattedHH = hh.toString().padStart(2, "0");
     let formattedMM = mm.toString().padStart(2, "0");
     let formattedSS = ss.toString().padStart(2, "0");
-    // let formattedMS = ms.toString().padStart(2, "0");
 
     time1 = `${formattedHH}:${formattedMM}:${formattedSS}`
     return time1;
@@ -68,10 +65,6 @@ function showButton(buttonKey) {
     buttonToHide.style.display = "none";
 }
 
-// function record(){
-//     console.log(time1)
-//     console.log(document.getElementById('timestamp').value)
-// }
 
 // Create event listeners
 
