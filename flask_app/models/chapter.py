@@ -236,6 +236,10 @@ class Chapter:
             flash("Title needs to be at least 2 characters", "chapter")
             is_valid = False
 
+        if len(chapter['title']) > 45:
+            flash("Title needs to be less than 45 characters", "chapter")
+            is_valid = False
+
         if 'availability' not in chapter:
             flash("Please indicate if you want your notes public or private!", "chapter")
             is_valid = False

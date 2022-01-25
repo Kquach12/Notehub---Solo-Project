@@ -65,6 +65,10 @@ class School:
         if len(school['school_name']) < 2:
             flash("School name needs to be at least 2 characters", "chapter")
             is_valid = False
+
+        elif len(school['school_name']) > 45:
+            flash("School name needs to be less than 45 characters", "chapter")
+            is_valid = False
             
         else:
             if len(results) == 0:

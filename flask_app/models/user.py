@@ -139,8 +139,14 @@ class User:
         if len(user['first_name']) < 1:
             flash("Please enter your first name ", "register")
             is_valid = False
+        if len(user['first_name']) > 45:
+            flash("Please keep your first name less than 45 characters ", "register")
+            is_valid = False
         if len(user['last_name']) < 1:
             flash("Please enter your last name ", "register")
+            is_valid = False
+        if len(user['last_name']) > 45:
+            flash("Please keep your last name less than 45 characters ", "register")
             is_valid = False
 
         return is_valid
