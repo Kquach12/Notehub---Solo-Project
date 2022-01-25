@@ -98,7 +98,7 @@ function submit(){
 document.getElementById('submit').addEventListener("click", function(event){
     event.preventDefault()
     let form = new FormData(myForm)
-    fetch("http://localhost:5000/save/note", { method :'POST', body : form})
+    fetch("/save/note", { method :'POST', body : form})
             .then( response => response.json() )
             .then( data => console.log(data) )
     submit()
