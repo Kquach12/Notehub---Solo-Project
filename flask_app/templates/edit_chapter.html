@@ -45,6 +45,8 @@
                 <input type="radio" name="availability" value="Public">
                 <label for="availability">Public</label><br>   
             </div>
+
+            <!--Use a for loop to give each note a unique name in the form-->
             <input type="hidden" name="num_of_notes" value="{{chapter.notes|length}}"/>
         {%  for note in chapter.notes %}
             <div style="border-bottom:rgb(64, 173, 224); border-bottom-width:5px; border-bottom-style:solid;">

@@ -40,10 +40,10 @@ def view_note(id):
     chapter = Chapter.get_one_with_notes(data)
     favorites = Chapter.get_favorites_count(data)
 
+    #Redirect users who are trying to access other users' private notes
     if (chapter.user_id != session['user_id'] and chapter.availability == 'private'):
         return redirect('/explore/notes')
-    
-    
+
     return render_template('view_note.html',  chapter = chapter, favorites = favorites['num_of_favs'])
 
 @app.route('/edit/note/<int:id>')
