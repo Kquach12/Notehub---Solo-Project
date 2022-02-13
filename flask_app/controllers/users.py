@@ -56,18 +56,16 @@ def dashboard():
         }
         user = User.get_one(data)
 
-        #limit to 3 recent chapters on dashboard
-        recent_chapters = []
-        chapters = Chapter.get_all_with_school_and_course(data)
-        counter = 0
-        for i in reversed(range(len(chapters))):
-            if counter == 3:
-                break
-            recent_chapters.append(chapters[i])
-            counter+=1
+        chapters = Chapter.get_recents_with_school_and_course(data)
+        # counter = 0
+        # for i in reversed(range(len(chapters))):
+        #     if counter == 3:
+        #         break
+        #     recent_chapters.append(chapters[i])
+        #     counter+=1
 
 
-        return render_template("dashboard.html", user = user, chapters = recent_chapters)
+        return render_template("dashboard.html", user = user, chapters = chapters)
     
     return redirect('/')
 

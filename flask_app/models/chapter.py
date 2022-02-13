@@ -220,6 +220,31 @@ class Chapter:
         return chapters
 
 
+    @classmethod 
+    def get_recents_with_school_and_course(cls, data):
+        query = "SELECT * FROM chapters LEFT JOIN courses ON chapters.course_id = courses.id LEFT JOIN schools ON chapters.school_id = schools.id WHERE user_id = %(id)s LIMIT 3;"
+        results = connectToMySQL('notehub_schema').query_db(query, data)
+        chapters = []
+        for i in range(len(results)):
+            chapters.append(cls(results[i]))
+            s = {
+                "id": results[i]['schools.id'],
+                "school_name": results[i]['school_name'],
+                "created_at": results[i]['schools.created_at'],
+                "updated_at": results[i]['schools.updated_at']
+            }
+            c = {
+                "id": results[i]['courses.id'],
+                "course_name": results[i]['course_name'],
+                "created_at": results[i]['courses.created_at'],
+                "updated_at": results[i]['courses.updated_at']
+            }
+            chapters[i].schools.append(school.School(s))
+            chapters[i].courses.append(course.Course(c))
+            
+        return chapters
+
+
     @classmethod
     def get_favorites_count( cls , data ):
         query = "SELECT COUNT(user_id) AS num_of_favs FROM favorites WHERE chapter_id = %(chapter_id)s;"
