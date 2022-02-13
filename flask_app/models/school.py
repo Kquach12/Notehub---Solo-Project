@@ -58,7 +58,6 @@ class School:
     @staticmethod
     def validate_school(school):
         is_valid = True
-        # test whether a field matches the pattern
         query = "SELECT * FROM schools WHERE school_name = %(school_name)s;"
         results = connectToMySQL('notehub_schema').query_db(query,school)
 
@@ -71,6 +70,7 @@ class School:
             is_valid = False
             
         else:
+            #if school has not been saved by other user
             if len(results) == 0:
                 School.save(school)
         

@@ -141,6 +141,7 @@ class Chapter:
         results = connectToMySQL('notehub_schema').query_db(query, data)
         if len(results) > 0:
             chapter = cls(results[0])
+            # Create instances and append to appropriate array
             for row in results:
                 n = {
                     "id": row['notes.id'],

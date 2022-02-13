@@ -57,7 +57,6 @@ class Course:
     @staticmethod
     def validate_course(course):
         is_valid = True
-        # test whether a field matches the pattern
         query = "SELECT * FROM courses WHERE course_name = %(course_name)s;"
         results = connectToMySQL('notehub_schema').query_db(query,course)
 
@@ -69,6 +68,7 @@ class Course:
             is_valid = False
             
         else:
+            #if course has not been saved by other user
             if len(results) == 0:
                 Course.save(course)
 
